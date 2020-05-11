@@ -6,9 +6,9 @@ module.exports = {
       summary: `Software developer.`,
     },
     description: `A starter blog demonstrating what Gatsby can do.`,
-    siteUrl: `https://gatsby-starter-blog-demo.netlify.com/`,
+    siteUrl: `https://www.joshua-vaughn.com/`,
     social: {
-      twitter: `josh_vaughn`,
+      twitter: `J_Vaughn_Dev`,
     },
   },
   plugins: [
@@ -87,6 +87,6 @@ module.exports = {
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
-    // `gatsby-plugin-offline`,
+    `gatsby-plugin-offline`,
   ],
 }
