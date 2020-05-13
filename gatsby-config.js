@@ -52,6 +52,12 @@ module.exports = {
               noInlineHighlight: false,
             },
           },
+          {
+            resolve: `gatsby-source-filesystem`,
+            options: {
+              path: `${__dirname}/content/blog/images`,
+            },
+          },
           `gatsby-remark-copy-linked-files`,
           `gatsby-remark-smartypants`,
         ],
@@ -88,5 +94,12 @@ module.exports = {
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     `gatsby-plugin-offline`,
+    {
+      resolve: "gatsby-plugin-mailchimp",
+      options: {
+        endpoint:
+          "https://joshua-vaughn.us19.list-manage.com/subscribe/post?u=6820041d67b0824333986e5bf&amp;id=07d5eaa76f", // add your MC list endpoint here; see instructions below
+      },
+    },
   ],
 }

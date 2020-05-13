@@ -1,7 +1,8 @@
 ---
 title: Authenticated Routes
-date: '2015-05-06T23:46:37.121Z'
+date: "2015-05-06T23:46:37.121Z"
 description: Learn how to authenticate your routes.
+featuredImage: ../images/lock.jpg
 ---
 
 # How do you protect authenticated routes in React Router?
@@ -27,10 +28,10 @@ In order to properly secure a route, you need to implement a "route guard" on yo
 This is the starting point for our mini react app. We wrap it with the BrowserRouter from react-router-dom, and render the NavBar, and our routes.
 
 ```js{1-2,22}{numberLines: true}
-import React from 'react'
-import { BrowserRouter as Router } from 'react-router-dom'
-import NavBar from './NavBar'
-import Routes from './Routes'
+import React from "react"
+import { BrowserRouter as Router } from "react-router-dom"
+import NavBar from "./NavBar"
+import Routes from "./Routes"
 
 export default () => (
   <Router>
@@ -45,9 +46,9 @@ export default () => (
 The NavBar component will handle rendering navigation links to a public page, and a private page. It also needs to include a sign out button if the user is already logged in. We can access react router's history object with the useHistory() hook, this will enable us to programmatically redirect the user when they click "Sign out". On line 11, we check to see if the user is already authenticated. If they are, then we proceed to render the sign out button. If they click that button, then we use our fakeAuth to sign them out, and push them back to the default route. We also use Link from react router to redirect the user to /public and /protected.
 
 ```js{numberLines: true}
-import React from 'react'
-import { useHistory, Link } from 'react-router-dom'
-import fakeAuth from './fakeAuthentication'
+import React from "react"
+import { useHistory, Link } from "react-router-dom"
+import fakeAuth from "./fakeAuthentication"
 
 const NavBar = () => {
   let history = useHistory()
@@ -58,7 +59,7 @@ const NavBar = () => {
         {fakeAuth.isAuthenticated && (
           <button
             onClick={() => {
-              fakeAuth.signout(() => history.push('/'))
+              fakeAuth.signout(() => history.push("/"))
             }}
           >
             Sign out
@@ -67,10 +68,10 @@ const NavBar = () => {
       </p>
       <ul>
         <li>
-          <Link to='/public'>Public Page</Link>
+          <Link to="/public">Public Page</Link>
         </li>
         <li>
-          <Link to='/protected'>Protected Page</Link>
+          <Link to="/protected">Protected Page</Link>
         </li>
       </ul>
     </>
@@ -85,21 +86,21 @@ export default NavBar
 This file simply defines our routes. /public and /login are both public routes that anyone can access, but the /protected uses the PrivateRoute component which will be in charge of locking the route down for us..
 
 ```js{numberLines: true}
-import React from 'react'
-import { Switch, Route } from 'react-router-dom'
-import PrivateRoute from './PrivateRoute'
-import LoginPage from './LoginPage'
+import React from "react"
+import { Switch, Route } from "react-router-dom"
+import PrivateRoute from "./PrivateRoute"
+import LoginPage from "./LoginPage"
 
 const Routes = () => {
   return (
     <Switch>
-      <Route path='/public'>
+      <Route path="/public">
         <PublicPage />
       </Route>
-      <Route path='/login'>
+      <Route path="/login">
         <LoginPage />
       </Route>
-      <PrivateRoute path='/protected'>
+      <PrivateRoute path="/protected">
         <PrivatePage />
       </PrivateRoute>
     </Switch>
@@ -117,9 +118,9 @@ export default Routes
 The PrivateRoute component is where we handle protecting a route based on some client side authentication. This component takes in children and the path. The `<Route>` component takes a render prop, and we can use this to implement our "route guard". We check to see if the user is authenticated in the fakeAuthentication helper. If they are authenticated, then we just render the `<PrivatePage />` That we passed to `<PrivateRoute/>` in Routes.js. If they are not authenticated, the we use react router's `<Redirect />` component to send the user to the login screen.
 
 ```js{numberLines: true}
-import React from 'react'
-import { Route, Redirect } from 'react-router-dom'
-import fakeAuth from './fakeAuthentication'
+import React from "react"
+import { Route, Redirect } from "react-router-dom"
+import fakeAuth from "./fakeAuthentication"
 
 const PrivateRoute = ({ children, path }) => {
   return (
@@ -131,8 +132,8 @@ const PrivateRoute = ({ children, path }) => {
         ) : (
           <Redirect
             to={{
-              pathname: '/login',
-              state: { from: location }
+              pathname: "/login",
+              state: { from: location },
             }}
           />
         )
@@ -151,14 +152,14 @@ This little file simulates a user authentication system. In your application, th
 ```js{numberLines: true}
 const fakeAuth = {
   isAuthenticated: false,
-  authenticate (cb) {
+  authenticate(cb) {
     fakeAuth.isAuthenticated = true
     setTimeout(cb, 100) // fake async
   },
-  signout (cb) {
+  signout(cb) {
     fakeAuth.isAuthenticated = false
     setTimeout(cb, 100)
-  }
+  },
 }
 
 export default fakeAuth

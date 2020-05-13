@@ -6,11 +6,15 @@ import Layout from "../components/layout"
 import SEO from "../components/seo"
 import { rhythm, scale } from "../utils/typography"
 import Subscribe from "../components/Subscribe"
+import Img from "gatsby-image"
+import "./styles.css"
 
 const BlogPostTemplate = ({ data, pageContext, location }) => {
   const post = data.markdownRemark
   const siteTitle = data.site.siteMetadata.title
   const { previous, next } = pageContext
+
+  let featuredImgFluid = post.frontmatter.featuredImage.childImageSharp.fluid
 
   return (
     <Layout location={location} title={siteTitle}>
@@ -19,35 +23,43 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
         description={post.frontmatter.description || post.excerpt}
       />
       <article>
-        <header>
-          <h1
+        <div className="post-header-image-wrapper">
+          <div className="post-header-image">
+            <Img fluid={featuredImgFluid} />
+          </div>
+        </div>
+        <div className="post-article"></div>
+        <div className="post-body">
+          <header>
+            <h1
+              style={{
+                marginTop: rhythm(1),
+                marginBottom: 0,
+              }}
+            >
+              {post.frontmatter.title}
+            </h1>
+            <p
+              style={{
+                ...scale(-1 / 5),
+                display: `block`,
+                marginBottom: rhythm(1),
+              }}
+            >
+              {post.frontmatter.date}
+            </p>
+          </header>
+          <section dangerouslySetInnerHTML={{ __html: post.html }} />
+          <Subscribe />
+          <hr
             style={{
-              marginTop: rhythm(1),
-              marginBottom: 0,
-            }}
-          >
-            {post.frontmatter.title}
-          </h1>
-          <p
-            style={{
-              ...scale(-1 / 5),
-              display: `block`,
               marginBottom: rhythm(1),
             }}
-          >
-            {post.frontmatter.date}
-          </p>
-        </header>
-        <section dangerouslySetInnerHTML={{ __html: post.html }} />
-        <Subscribe />
-        <hr
-          style={{
-            marginBottom: rhythm(1),
-          }}
-        />
-        <footer>
-          <Bio />
-        </footer>
+          />
+          <footer>
+            <Bio />
+          </footer>
+        </div>
       </article>
 
       <nav>
@@ -97,6 +109,18 @@ export const pageQuery = graphql`
         title
         date(formatString: "MMMM DD, YYYY")
         description
+        featuredImage {
+          childImageSharp {
+            fluid(maxWidth: 800, quality: 50) {
+              src
+              srcSet
+              aspectRatio
+              sizes
+              base64
+            }
+          }
+          publicURL
+        }
       }
     }
   }

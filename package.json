@@ -38,7 +38,8 @@
   },
   "devDependencies": {
     "@tryghost/helpers": "^1.1.27",
-    "prettier": "2.0.5"
+    "prettier": "2.0.5",
+    "typography-theme-stern-grove": "^0.16.19"
   },
   "homepage": "https://github.com/gatsbyjs/gatsby-starter-blog#readme",
   "keywords": [

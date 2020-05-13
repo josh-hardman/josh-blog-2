@@ -1,0 +1,29 @@
+.post-article {
+  position: relative;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.post-header-image {
+  margin: 0;
+  padding-bottom: 0;
+  margin-bottom: -30%;
+  width: 100%;
+  max-width: 800px;
+}
+.post-header-image-wrapper {
+  display: flex;
+  justify-content: center;
+  width: 100vw;
+  position: absolute;
+  left: 0;
+  right: 0;
+}
+
+.post-body {
+  position: relative;
+  background-color: rgba(256, 256, 256, 0.9);
+  padding: 24px 48px;
+  margin-top: 200px;
+}
