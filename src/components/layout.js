@@ -1,32 +1,43 @@
 import React from "react"
 import { Link } from "gatsby"
 
-import { rhythm, scale } from "../utils/typography"
+import { rhythm, scale, colors } from "../utils/typography"
 import "./layout.css"
 
 const Layout = ({ location, title, children }) => {
   const rootPath = `${__PATH_PREFIX__}/`
   let header
-
+  console.log(title)
   if (location.pathname === rootPath) {
     header = (
-      <h1
+      <Link
         style={{
-          ...scale(1.5),
-          marginBottom: rhythm(1.5),
-          marginTop: 0,
+          boxShadow: `none`,
+          color: `inherit`,
         }}
+        to={`/`}
       >
-        <Link
+        <h1
           style={{
-            boxShadow: `none`,
-            color: `inherit`,
+            ...scale(1),
+            marginBottom: 0,
+            marginTop: 0,
           }}
-          to={`/`}
         >
-          {title}
-        </Link>
-      </h1>
+          {title[0]}
+        </h1>
+        {title[1] && (
+          <h1
+            style={{
+              ...scale(1),
+              color: colors.primary,
+              marginTop: 0,
+            }}
+          >
+            {title[1]}
+          </h1>
+        )}
+      </Link>
     )
   } else {
     header = (
@@ -43,7 +54,7 @@ const Layout = ({ location, title, children }) => {
           }}
           to={`/`}
         >
-          {title}
+          {`${title[0]} ${title[1]}`}
         </Link>
       </h3>
     )

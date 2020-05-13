@@ -2,6 +2,12 @@
   width: 100%;
   display: flex;
   justify-content: center;
+  background: rgb(240, 216, 252);
+  padding: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 300px;
 }
 
 .sub-inner {
@@ -11,7 +17,24 @@
 
 .sub-input {
   padding: 17px;
-  border: 2px solid #377b00;
   height: 56px;
   font-size: 18px;
+}
+
+.sub-button {
+  background: rebeccapurple;
+  color: white;
+}
+
+.sub-input-wrapper {
+  position: relative;
+  display: flex;
+}
+
+.sub-header {
+  margin: 0;
+  margin-bottom: 12px;
+}
+
+.sub-description {
 }

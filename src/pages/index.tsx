@@ -6,6 +6,8 @@ import Bio from "../components/bio"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import { rhythm } from "../utils/typography"
+import Subscribe from "../components/Subscribe"
+import Intro from "../components/Intro"
 
 type Data = {
   site: {
@@ -35,13 +37,19 @@ const BlogIndex = ({ data, location }: PageProps<Data>) => {
   const posts = data.allMarkdownRemark.edges
 
   return (
-    <Layout location={location} title={siteTitle}>
+    <Layout
+      location={location}
+      title={siteTitle}
+      description="Land your first big boy job"
+    >
       <SEO title="All posts" />
-      <Bio />
+      <Subscribe />
+      <Intro />
+      <h1>Posts</h1>
       {posts.map(({ node }) => {
         const title = node.frontmatter.title || node.fields.slug
         return (
-          <article key={node.fields.slug}>
+          <article className="post-card" key={node.fields.slug}>
             <header>
               <h3
                 style={{
@@ -64,6 +72,7 @@ const BlogIndex = ({ data, location }: PageProps<Data>) => {
           </article>
         )
       })}
+      <Bio />
     </Layout>
   )
 }

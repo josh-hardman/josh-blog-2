@@ -8,3 +8,12 @@ body {
 html {
   background: rebeccapurple;
 }
+
+.layout-description {
+  display: block;
+  margin-top: 1.5rem;
+  font-weight: 200;
+  line-height: 1;
+  letter-spacing: -0.05rem;
+  font-size: 28px !important;
+}

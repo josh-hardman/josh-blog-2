@@ -1,13 +1,7 @@
 import Typography from "typography"
-import Theme from "typography-theme-stern-grove"
+import Wordpress2016 from "typography-theme-wordpress-2016"
 
-Theme.baseFontSize = "18px"
-Theme.baseLineHeight = "1.63"
-Theme.baseScaleRatio = "2.50"
-Theme.baseParagraphSpacing = ".7"
-Theme.baseParagraphSpacing = ".7"
-
-Theme.overrideThemeStyles = () => {
+Wordpress2016.overrideThemeStyles = () => {
   return {
     "a.gatsby-resp-image-link": {
       boxShadow: `none`,
@@ -15,9 +9,9 @@ Theme.overrideThemeStyles = () => {
   }
 }
 
-delete Theme.googleFonts
+delete Wordpress2016.googleFonts
 
-const typography = new Typography(Theme)
+const typography = new Typography(Wordpress2016)
 
 // Hot reload typography in development.
 if (process.env.NODE_ENV !== `production`) {
@@ -27,3 +21,8 @@ if (process.env.NODE_ENV !== `production`) {
 export default typography
 export const rhythm = typography.rhythm
 export const scale = typography.scale
+export const colors = {
+  primary: "hsla(280, 85%, 55%, 1)",
+  background: "hsla(280, 85%, 65%, 0.25)",
+  backgroundLightest: "hsla(280, 85%, 65%, 0.15)",
+}
